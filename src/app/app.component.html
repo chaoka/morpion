@@ -1,0 +1,14 @@
+<div class='p-5'>
+  <button class='bg-teal-500 text-white px-5 py-1.5 rounded-sm mb-2.5' (click)='newGame()'>New game</button>
+  <p class='mb-2.5' [ngClass]='{"font-semibold": winner}'>
+    <ng-container *ngIf='winner else turn'>The winner is {{ winner }} !</ng-container>
+  </p>
+  <div class='grid grid-cols-3 max-w-xs gap-[1px] bg-black mb-2.5' [class.pointer-events-none]='winner'>
+    <div *ngFor="let s of squares; index as i" [class.pointer-events-none]='s'
+      class='aspect-square bg-gray-200 flex items-center justify-center cursor-pointer hover:bg-gray-300'
+      (click)='addMark(i)'>{{ s }}</div>
+  </div>
+</div>
+
+<!-- ng template will be put in place of ng-container! -->
+<ng-template #turn>It's {{ Xplayer ? 'X' : 'O' }} turn to play!</ng-template>
